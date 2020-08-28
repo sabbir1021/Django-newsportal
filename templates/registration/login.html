@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+
+    <title>Login</title>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<br>
+{% if user.is_authenticated %}
+<div class="container">
+<br>
+<div class="row">
+<div class="col-8">
+<h2>{{ user.get_full_name }} - Are You Loggin</h2>
+</div>
+<div class="col-4">
+<p><a  href="{% url 'logout' %}">logout</a></p>
+</div>
+</div>
+</div>
+
+{% else %}
+<div class="container">
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+</div>
+{% endif %}
+<br>
+
+{% endblock %}

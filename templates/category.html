@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+    <title>{{cate.name}}</title>
+
+{% endblock %}
+{% block content %}
+<!-- main content start -->
+
+
+
+ <!-- Breadcrumb Area Start Here -->
+            <section class="breadcrumbs-area" style="background-image: url('img/banner/breadcrumbs-banner.jpg');">
+                <div class="container">
+                    <div class="breadcrumbs-content">
+                        
+                        <ul>
+                            <li>
+                                <a href="{% url 'home' %}">Home</a> -</li>
+                            <li><a href="">{{cate.name}}</a></li></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+<!-- Breadcrumb Area End Here -->
+<!-- Post Style  Page Area Start Here -->
+            <section class="bg-body section-space-less30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">{{cate.name}}</div>
+                                </div>
+                            <div class="row">
+                                {% for p in post %}
+                                <div class="col-sm-6 col-12">
+                                    <div class="position-relative mb-30">
+                                        <a class="img-opacity-hover" href="{% url 'single' id=p.id %}">
+                                            <img src="{{p.picture.url}}" alt="news" class="img-fluid width-100 mb-15">
+                                        </a>
+                                        <div class="topic-box-top-xs">
+                                            <div class="topic-box-sm color-cod-gray mb-20">{{p.category}}</div>
+                                        </div>
+                                        <div class="post-date-dark">
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>October 27, 2017</li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="title-medium-dark size-lg mb-none">
+                                            <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            <div class="row mt-20-r mb-30">
+                                
+                                <!-- <div class="col-sm-6 col-12">
+                                    <div class="pagination-btn-wrapper text-center--xs mb15--xs">
+                                        <ul>
+                                            <li class="active">
+                                                <a href="?page=1">1</a>
+                                            </li>
+                                            <li>
+                                                <a href="?page=2">2</a>
+                                            </li>
+                                            <li>
+                                                <a href="?page=3">3</a>
+                                            </li>
+                                            <li>
+                                                <a href="?page=4">4</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div> -->
+                                <div class="col-sm-6 col-12">
+                                    <div class="pagination-result text-right pt-10 text-center--xs">
+                                        <div class="pagination">
+                                            <span class="step-links">
+                                                {% if post.has_previous %}
+                                                    <a href="?page=1">&laquo;</a>
+                                                    <a href="?page={{ post.previous_page_number }}">previous</a>
+                                                {% endif %}
+                                        
+                                                <span class="current">
+                                                    Page {{ post.number }} of {{ post.paginator.num_pages }}.
+                                                </span>
+                                        
+                                                {% if post.has_next %}
+                                                    <a href="?page={{ post.next_page_number }}">next</a>
+                                                    <a href="?page={{ post.paginator.num_pages }}">&raquo;</a>
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+                            <div class="sidebar-box">
+                                <div class="ne-banner-layout1 text-center mt-30">
+                                    <a href="#">
+                                        <img src="{% static 'img/banner/banner3.jpg' %}" alt="ad" class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-5">
+                                    <div class="topic-box-lg color-cod-gray">সর্বশেষ খবর</div>
+                                </div>
+                                <div class="row">
+                                    {% for p in latest %}
+                                    <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                                        <div class="mt-25 position-relative">
+                                            <div class="topic-box-top-xs">
+                                                <div class="topic-box-sm color-cod-gray mb-20">{{p.category}}</div>
+                                            </div>
+                                            <a href="{% url 'single' id=p.id %}" class="mb-10 display-block img-opacity-hover">
+                                                <img src="{{p.picture.url}}" alt="ad" class="img-fluid m-auto width-100">
+                                            </a>
+                                            <h3 class="title-medium-dark size-md mb-none">
+                                                <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Stay Connected</div>
+                                </div>
+                                <ul class="stay-connected overflow-hidden">
+                                    <li class="facebook">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        <div class="connection-quantity">50.2 k</div>
+                                        <p>Fans</p>
+                                    </li>
+                                    <li class="twitter">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        <div class="connection-quantity">10.3 k</div>
+                                        <p>Followers</p>
+                                    </li>
+                                    <li class="linkedin">
+                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                        <div class="connection-quantity">25.4 k</div>
+                                        <p>Fans</p>
+                                    </li>
+                                    <li class="rss">
+                                        <i class="fa fa-rss" aria-hidden="true"></i>
+                                        <div class="connection-quantity">20.8 k</div>
+                                        <p>Subscriber</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- Post Style  Page Area End Here -->
+
+
+<!-- main content end   -->
+{% endblock %}

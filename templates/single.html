@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+    <title>{{post.title}}</title>
+
+{% endblock %}
+{% block meta %}
+
+<meta property="og:title" content="{{post.title}}">
+<meta property="og:description" content="{{ post.body|striptags|truncatewords:'15' }}">
+<meta property="og:image"
+    content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ object.get_absolute_url }}{{post.image.url}}">
+<meta property="og:image:alt" content="Image Not Found">
+<meta property="og:url"
+    content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{post.get_absolute_url}}">
+
+{% endblock %}
+{% block content %}
+<!-- main content start -->
+            <!-- Breadcrumb Area Start Here -->
+            <section class="breadcrumbs-area">
+                <div class="container">
+                    <div class="breadcrumbs-content">
+                        
+                        <ul>
+                            <li>
+                                <a href="{% url 'home'  %}">Home</a> -</li>
+                            <li>
+                                <a href="{% url 'category' id=post.category.id %}">{{post.category}}</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Breadcrumb Area End Here -->
+            <!-- News Details Page Area Start Here -->
+            <section class="bg-body section-space-less30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12 mb-30">
+                            <div class="news-details-layout1">
+                                <div class="position-relative mb-30">
+                                    <img src="{{post.picture.url}}" alt="news-details" class="img-fluid">
+                                    <div class="topic-box-top-sm">
+                                        <a href="{% url 'category' id=post.category.id %}"><div class="topic-box-sm color-cinnabar mb-20">{{post.category}}</div></a>
+                                    </div>
+                                </div>
+                                <h2 class="title-semibold-dark size-c30">{{post.title}}</h2>
+                                <ul class="post-info-dark mb-30">
+                                    
+                                    <li>
+                                        
+                                            <i class="fa fa-calendar" aria-hidden="true"></i> &nbsp; <span> {{post.posted_on | date:'d/m/Y - H:i a'}}</span>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="#">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>202</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-comments" aria-hidden="true"></i>20</a>
+                                    </li> -->
+                                </ul>
+                                 {{post.body | safe }}
+                                
+                                <div class="post-share-area mb-40 item-shadow-1">
+
+                                    <p>You can share this post!</p>
+                                    <ul class="social-default item-inline">
+                                        <li>
+                                            <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank">
+                                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            </a>
+                                            
+                                        </li>
+                                        <li>
+                                            <a class="twitter" href="https://twitter.com" target="_blank" >
+                                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="google" href='https://plus.google.com/share?url={{ request.build_absolute_uri }}' target="_blank">
+                                                 <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="https://www.linkedin.com/" class="linkedin" target="_blank">
+                                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="row no-gutters divider blog-post-slider">
+                                {% if post.id > first.id %}
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                        <a href="{% url 'single' id=post.id|add:'-1' %}" class="prev-article">
+                                            <i class="fa fa-angle-left" aria-hidden="true"></i>Previous News</a>
+                                        <h2 class="title-medium-dark pr-50">{{firstpost.title}}</h2>
+                                    </div>
+                                {% endif %}
+
+                                {% if post.id < last.id %}
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                                        <a href="{% url 'single' id=post.id|add:'1' %}" class="next-article">Next News
+                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        </a>
+                                        <h2 class="title-medium-dark pl-50">{{lastpost.title}}</h2>
+                                    </div>
+                                {% endif %}
+                                </div>
+                                
+                                <div class="comments-area">
+                                        <h2 class="title-semibold-dark size-xl border-bottom mb-40 pb-20">Comments</h2>
+                                        {% for p in com %}
+                                        <ul>
+                                            <li>
+                                                <div class="media media-none-xs">
+                                                    <img src="{% static 'img/404.png' %}" class="img-fluid rounded-circle" alt="comments">
+                                                    <div class="media-body comments-content media-margin30">
+                                                        <h3 class="title-semibold-dark">
+                                                            {{p.name}} , &nbsp
+                                                                <span> {{p.posted_on}}</span>
+                                                            
+                                                        </h3>
+                                                        <p>{{p.post_comment}}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        {% empty %}
+                                            <h1> Sorry No Comment  </h1>
+                                        {% endfor %}
+                                </div>
+                                <div class="leave-comments">
+                                    <h2 class="title-semibold-dark size-xl mb-40">Leave Comments</h2>
+                                    <form id="leave-comments" action="" method="POST">
+                                    {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <input name="name" placeholder="Name*" class="form-control" type="text">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <textarea name="post_comment" placeholder="Message*" class="textarea form-control" id="form-message" rows="8" cols="20"></textarea>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group mb-none">
+                                                    <button type="submit" class="btn-ftg-ptp-45">Post Comment</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Stay Connected</div>
+                                </div>
+                                <ul class="stay-connected overflow-hidden">
+                                    <li class="facebook">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                        <div class="connection-quantity">50.2 k</div>
+                                        <p>Fans</p>
+                                    </li>
+                                    <li class="twitter">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        <div class="connection-quantity">10.3 k</div>
+                                        <p>Followers</p>
+                                    </li>
+                                    <li class="linkedin">
+                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                        <div class="connection-quantity">25.4 k</div>
+                                        <p>Fans</p>
+                                    </li>
+                                    <li class="rss">
+                                        <i class="fa fa-rss" aria-hidden="true"></i>
+                                        <div class="connection-quantity">20.8 k</div>
+                                        <p>Subscriber</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="ne-banner-layout1 text-center">
+                                    <a href="#">
+                                        <img src="{% static 'img/banner/banner3.jpg' %}" alt="ad" class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-5">
+                                    <div class="topic-box-lg color-cod-gray">Recent News</div>
+                                </div>
+                                <div class="row">
+                                    {% for p in latest %}
+                                    <div class="col-lg-6 col-md-4 col-sm-6 col-6">
+                                        <div class="mt-25 position-relative">
+                                            <div class="topic-box-top-xs">
+                                                <div class="topic-box-sm color-cod-gray mb-20">{{p.category}}</div>
+                                            </div>
+                                            <a href="{% url 'single' id=p.id %}" class="mb-10 display-block img-opacity-hover">
+                                                <img src="{{p.picture.url}}" alt="ad" class="img-fluid m-auto width-100">
+                                            </a>
+                                            <h3 class="title-medium-dark size-md mb-none">
+                                                <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Most Reviews</div>
+                                </div>
+                                {% for p in popular %}
+                                <div class="position-relative mb30-list bg-body">
+                                    <div class="topic-box-top-xs">
+                                        <div class="topic-box-sm color-cod-gray mb-20">{{p.category}}</div>
+                                    </div>
+                                    <div class="media">
+                                        <a class="img-opacity-hover" href="{% url 'single' id=p.id %}">
+                                            <img width="130px" src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="post-date-dark">
+                                                <ul>
+                                                    <li>
+                                                        <span>
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                                </ul>
+                                            </div>
+                                            <h3 class="title-medium-dark mb-none">
+                                                <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- News Details Page Area End Here -->
+<!-- main content end   -->
+{% endblock %}

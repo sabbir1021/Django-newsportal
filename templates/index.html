@@ -1,0 +1,654 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+    <title>Ontoralerkhobr</title>
+
+{% endblock %}
+{% block content %}
+<!-- main content start -->
+<!-- lead start -->
+            <section class="bg-accent section-space-bottom-less4">
+                <div class="container">
+                    <div class="row tab-space2">
+
+                        <div class="col-md-8 col-sm-12 mb-4">
+                            {% for p in fontlead %}
+                            
+                            <a href="{% url 'single' id=p.id %}">
+                                <div class="img-overlay-70 img-scale-animate">
+                                    <img src="{{p.picture.url}}" alt="news" class="img-fluid width-100">
+                                    <div class="mask-content-lg">
+                                        <div class="topic-box-sm color-cinnabar mb-20">{{p.category}}</div>
+                                        <div class="post-date-light">
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                            </ul>
+                                        </div>
+                                        <h1 class="title-medium-light  d-sm-block">
+                                            {{p.title}}
+                                        </h1>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            {% for p in sidelead %}
+                            
+                            <a href="{% url 'single' id=p.id %}">
+                                <div class="img-overlay-70 img-scale-animate mb-4">
+                                    <div class="mask-content-sm">
+                                        <div class="topic-box-sm color-razzmatazz mb-10">{{p.category}}</div>
+                                        <h2 class="title-medium-light">
+                                            {{p.title}}
+                                        </h2>
+                                    </div>
+                                    <img src="{{p.picture.url}}" alt="news" class="img-fluid width-100">
+                                </div>
+                            </a>
+                           
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+<!-- lead end -->
+
+<!-- Bnagladesh Story Area Start Here -->
+            <section class="bg-accent section-space-bottom-less30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="topic-border color-persian-green mb-30">
+                                <div class="topic-box-lg color-persian-green">বাংলাদেশ </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 mb-30">
+                                    {% for p in banlead %}
+                                   
+                                    <a href="{% url 'single' id=p.id %}">
+                                        <div class="img-overlay-70 img-scale-animate">
+                                            <img src="{{p.picture.url}}" alt="news" class="img-fluid width-100">
+                                        </div>
+                                    </a>
+                                    <ul class="item-box-light-mix item-shadow-gray">
+                                        <li>
+                                            <div class="post-date-dark">
+                                                <ul>
+                                                    <li>
+                                                        <span>
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                                </ul>
+                                            </div>
+                                            <h3 class="title-medium-dark">
+                                                <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                            </h3>
+                                        </li>
+                                    </ul>
+                                    
+                                    {% endfor %}
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    {% for p in ban %}
+                                    
+                                    <div class="media bg-body item-shadow-gray mb-30">
+                                        
+                                        <a class="img-opacity-hover width34-lg width30-md" href="{% url 'single' id=p.id %}">
+                                            <img width="130px" src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                        </a>
+                                        <div class="media-body media-padding5">
+                                            <div class="post-date-dark">
+                                                <ul>
+                                                    <li>
+                                                        <span>
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                                </ul>
+                                            </div>
+                                            <h3 class="title-medium-dark mb-none">
+                                                <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                            </h3>
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                    {% endfor %}
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Stay Connected</div>
+                                </div>
+                                <ul class="stay-connected-light overflow-hidden">
+                                    <li class="facebook">
+                                        <a href="https://www.facebook.com/ontoralerkhobor">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            <div class="connection-quantity">50.2 k</div>
+                                            <p>Fans</p>
+                                        </a>
+                                    </li>
+                                    <li class="twitter">
+                                        <a href="#">
+                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            <div class="connection-quantity">10.3 k</div>
+                                            <p>Followers</p>
+                                        </a>
+                                    </li>
+                                    <li class="linkedin">
+                                        <a href="#">
+                                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                            <div class="connection-quantity">25.4 k</div>
+                                            <p>Fans</p>
+                                        </a>
+                                    </li>
+                                    <li class="rss">
+                                        <a href="#">
+                                            <i class="fa fa-rss" aria-hidden="true"></i>
+                                            <div class="connection-quantity">20.8 k</div>
+                                            <p>Subscriber</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="ne-banner-layout1 text-center">
+                                    <a href="#">
+                                        <img src="{% static 'img/banner/banner11.jpg' %}" alt="ad" class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- Bangladesh Story Area End Here -->
+<!-- More News Area Start Here -->
+            <section class="bg-accent ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="ne-isotope">
+                                <div class="topic-border color-azure-radiance mb-30">
+                                    <div class="topic-box-lg color-azure-radiance">আন্তর্জাতিক</div>
+                                </div>
+                                <div class="featuredContainer">
+                                    <div >
+                                        <div class="row">
+                                            {% for p in inter %}
+                                            
+                                            <div class="col-md-12 col-sm-6 col-12 mb-30">
+                                                <div class="media item-shadow-gray bg-body media-none--sm">
+                                                    <div class="position-relative width-36 width43-lg">
+                                                        <a href="{% url 'single' id=p.id %}" class="img-opacity-hover img-overlay-70">
+                                                            <img src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                                        </a>
+                                                        
+                                                    </div>
+                                                    <div class="media-body media-padding30 p-mb-none-child">
+                                                        <div class="post-date-dark">
+                                                            <ul>
+                                                                <li>
+                                                                    <span>
+                                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                    </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                                            </ul>
+                                                        </div>
+                                                        <h3 class="title-semibold-dark size-lg mb-15">
+                                                            <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                                        </h3>
+                                                        <p> {{ p.body | safe | truncatechars:100 }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>                                          
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">সর্বশেষ খবর</div>
+                                </div>
+                                <div class="d-inline-block">
+                                    {% for p in latest %}
+                                    <div class="media mb30-list bg-body">
+                                        <a class="img-opacity-hover" href="{% url 'single' id=p.id %}">
+                                            <img width="130px" src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                        </a>
+                                        <div class="media-body media-padding5">
+                                            <div class="post-date-dark">
+                                                <ul>
+                                                    <li>
+                                                        <span>
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                                </ul>
+                                            </div>
+                                            <h3 class="title-medium-dark mb-none">
+                                                <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Newsletter</div>
+                                </div>
+                                <div class="newsletter-area bg-primary">
+                                    <h2 class="title-medium-light size-xl line-height-custom">Subscribe to our mailing list to get the new updates!</h2>
+                                    <img  src="img/banner/newsletter.png" alt="newsletter" class="img-fluid mb-10">
+                                    <p>Subscribe our newsletter to stay updated</p>
+                                    <div class="input-group stylish-input-group">
+                                        <input type="text" placeholder="Enter your mail" class="form-control">
+                                        <span class="input-group-addon">
+                                            <button type="submit">
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- international News Area End Here -->
+<!-- sport News Area start Here -->
+            <section class="bg-body section-space-bottom-less30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="topic-border color-cod-gray mb-30">
+                                <div class="topic-box-lg color-cod-gray">খেলা</div>
+                            </div>
+                            <div class="row">
+                                {% for p in sport %}
+                                <div class="col-sm-6 col-12">
+                                    <div class="position-relative mb-30">
+                                        <a class="img-opacity-hover" href="{% url 'single' id=p.id %}">
+                                            <img src="{{p.picture.url}}" alt="news" class="img-fluid width-100 mb-15">
+                                        </a>
+                                        
+                                        <div class="post-date-dark">
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="title-medium-dark size-lg mb-none">
+                                            <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">জনপ্রিয় খবর</div>
+                                </div>
+                                <div class="show-item3-lg">
+                                    {% for p in popular %}
+                                    <div class="position-relative bg-body mb30-list">
+                                        <div class="topic-box-top-xs">
+                                            <div class="topic-box-sm color-white mb-20">{{p.category}}</div>
+                                        </div>
+                                        <div class="media">
+                                            <a class="img-opacity-hover" href="{% url 'single' id=p.id %}">
+                                                <img width="130px" src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                            </a>
+                                            <div class="media-body">
+                                                <div class="post-date-dark">
+                                                    <ul>
+                                                        <li>
+                                                            <span>
+                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                                    </ul>
+                                                </div>
+                                                <h3 class=" title-medium-dark mb-none">
+                                                    <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Newsletter</div>
+                                </div>
+                                <div class="newsletter-area bg-primary">
+                                    <h2 class="title-medium-light size-xl pl-30 pr-30">Subscribe to our mailing list to get the new updates!</h2>
+                                    <img src="img/banner/newsletter.png" alt="newsletter" class="img-fluid m-auto mb-15">
+                                    <p>Subscribe our newsletter to stay updated</p>
+                                    <div class="input-group stylish-input-group">
+                                        <input type="text" placeholder="Enter your mail" class="form-control">
+                                        <span class="input-group-addon">
+                                            <button type="submit">
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- Sport News Area End Here -->
+<!-- Intertainment Area Start Here -->
+            <section class="section-space-bottom-less30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12 mb-30">
+                            <div class="topic-border color-cod-gray mb-30">
+                                <div class="topic-box-lg color-cod-gray">বিনেদন</div>
+                            </div>
+                            {% for p in tainlead %}
+                           
+                            <a href="{% url 'single' id=p.id %}">
+                                <div class="img-overlay-70 img-scale-animate">
+                                    <img src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                    <div class="mask-content-lg">
+                                        
+                                        <div class="post-date-light">
+                                            <ul>
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                            </ul>
+                                        </div>
+                                        <h2 class="title-medium-light size-xl  d-sm-block">
+                                            {{p.title}}
+                                        </h2>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            {% endfor %}
+                            <div class="item-box-light-md-less30 ie-full-width">
+                                {% for p in tain %}
+                                
+                                <div class="media mb-30 media-none--sm">
+                                    <div class="position-relative width-40">
+                                        <a href="{% url 'single' id=p.id %}" class="img-opacity-hover">
+                                            <img src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="media-body p-mb-none-child media-margin30">
+                                        <div class="post-date-dark">
+                                            <ul>
+                                                
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="title-semibold-dark size-lg mb-15 mb5-md">
+                                            <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                        </h3>
+                                        <p>{{p.body | safe |truncatechars:120}}
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                        <div class="ne-sidebar sidebar-break-md col-lg-4 col-md-12">
+                            <div class="sidebar-box">
+                                <div class="topic-border color-cod-gray mb-30">
+                                    <div class="topic-box-lg color-cod-gray">Stay Connected</div>
+                                </div>
+                                <ul class="stay-connected-light overflow-hidden mb-20">
+                                    <li class="facebook">
+                                        <a href="#">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            <div class="connection-quantity">50.2 k</div>
+                                            <p>Fans</p>
+                                        </a>
+                                    </li>
+                                    <li class="twitter">
+                                        <a href="#">
+                                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            <div class="connection-quantity">10.3 k</div>
+                                            <p>Followers</p>
+                                        </a>
+                                    </li>
+                                    <li class="linkedin">
+                                        <a href="#">
+                                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                            <div class="connection-quantity">25.4 k</div>
+                                            <p>Fans</p>
+                                        </a>
+                                    </li>
+                                    <li class="rss">
+                                        <a href="#">
+                                            <i class="fa fa-rss" aria-hidden="true"></i>
+                                            <div class="connection-quantity">20.8 k</div>
+                                            <p>Subscriber</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="ne-banner-layout1 text-center">
+                                    <a href="#">
+                                        <img src="{% static 'img/banner/banner12.jpg' %}" alt="ad" class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="sidebar-box">
+                                <div class="ne-banner-layout1 text-center">
+                                    <a href="#">
+                                        <img src="{% static 'img/banner/banner12.jpg' %}" alt="ad" class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- Intertainment Area End Here -->
+<!-- 3 type News Area Start Here -->
+            <section class="bg-accent section-space-default">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 mb-30">
+                            <div class="topic-border color-apple mb-30 width-100">
+                                <div class="topic-box-lg color-apple">বিজ্ঞান ও প্রযুক্তি</div>
+                            </div>
+                            {% for p in ictlead %}
+                           
+                            <a href="{% url 'single' id=p.id %}">
+                                <div class="img-overlay-70 img-scale-animate mb-30">
+                                    <div class="mask-content-sm">
+                                        <div class="post-date-light">
+                                            <ul>
+                                                
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="title-medium-light">
+                                           {{p.title}}
+                                        </h3>
+                                    </div>
+                                    <img src="{{p.picture.url}}" alt="news" class="img-fluid width-100">
+                                </div>
+                            </a>
+                            
+                            {% endfor %}
+                            
+                            {% for p in ict %}
+                            
+                            <div class="media mb-30">
+                                <a class="img-opacity-hover" href="{% url 'single' id=p.id %}">
+                                    <img width="130px" src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                </a>
+                                <div class="media-body">
+                                    <div class="post-date-dark">
+                                        <ul>
+                                            <li>
+                                                <span>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="title-medium-dark size-md mb-none">
+                                        <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                    </h3>
+                                </div>
+                            </div>
+                           
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-md-4 col-sm-12 mb-30">
+                            <div class="topic-border color-cutty-sark mb-30 width-100">
+                                <div class="topic-box-lg color-cutty-sark">লাইফ-স্টাইল</div>
+                            </div>
+                            {% for p in lifelead %}
+                           
+                            <a href="{% url 'single' id=p.id %}">
+                                <div class="img-overlay-70 img-scale-animate mb-30">
+                                    <div class="mask-content-sm">
+                                        <div class="post-date-light">
+                                            <ul>
+                                                
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="title-medium-light">
+                                           {{p.title}}
+                                        </h3>
+                                    </div>
+                                    <img src="{{p.picture.url}}" alt="news" class="img-fluid width-100">
+                                </div>
+                            </a>
+                            
+                            {% endfor %}
+
+                            {% for p in life %}
+                            
+                            <div class="media mb-30">
+                                <a class="img-opacity-hover" href="{% url 'single' id=p.id %}">
+                                    <img width="130px" src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                </a>
+                                <div class="media-body">
+                                    <div class="post-date-dark">
+                                        <ul>
+                                            <li>
+                                                <span>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="title-medium-dark size-md mb-none">
+                                        <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                    </h3>
+                                </div>
+                            </div>
+                            
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-4 col-sm-12 mb-30">
+                            <div class="topic-border color-web-orange mb-30 width-100">
+                                <div class="topic-box-lg color-web-orange">চাকরি</div>
+                            </div>
+                            {% for p in joblead %}
+                            
+                            <a href="{% url 'single' id=p.id %}">
+                                <div class="img-overlay-70 img-scale-animate mb-30">
+                                    <div class="mask-content-sm">
+                                        <div class="post-date-light">
+                                            <ul>
+                                                
+                                                <li>
+                                                    <span>
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                            </ul>
+                                        </div>
+                                        <h3 class="title-medium-light">
+                                           {{p.title}}
+                                        </h3>
+                                    </div>
+                                    <img src="{{p.picture.url}}" alt="news" class="img-fluid width-100">
+                                </div>
+                            </a>
+                            
+                            {% endfor %}
+
+                            {% for p in job %}
+                            
+                            <div class="media mb-30">
+                                <a class="img-opacity-hover" href="{% url 'single' id=p.id %}">
+                                    <img width="130px" src="{{p.picture.url}}" alt="news" class="img-fluid">
+                                </a>
+                                <div class="media-body">
+                                    <div class="post-date-dark">
+                                        <ul>
+                                            <li>
+                                                <span>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </span>{{p.posted_on | date:'d/m/Y - H:i'}}</li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="title-medium-dark size-md mb-none">
+                                        <a href="{% url 'single' id=p.id %}">{{p.title}}</a>
+                                    </h3>
+                                </div>
+                            </div>
+                            
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="ne-banner-layout1 mt-20-r text-center">
+                                <a href="#">
+                                    <img src="{% static 'img/banner/banner2.jpg' %}" alt="ad" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<!-- 3 type  News Area End Here -->
+
+
+<!-- main content end   -->
+{% endblock %}
